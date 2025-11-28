@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>欢迎访问我的GitHub仓库</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen font-sans text-dark flex flex-col">
+    <!-- 主内容区域 -->
+    <main class="flex-1 container mx-auto px-4 py-8 sm:py-16 flex flex-col items-center justify-center">
+        <!-- GitHub图标 - 响应式大小 -->
+        <div class="mb-6 sm:mb-8">
+            <i class="fa fa-github text-5xl sm:text-7xl text-primary opacity-90"></i>
+        </div>
+        
+        <!-- 欢迎信息 - 响应式布局和字体 -->
+        <div class="text-center mb-8 sm:mb-12 max-w-2xl w-full">
+            <h1 class="text-[clamp(1.5rem,5vw,3rem)] font-bold mb-3 sm:mb-4 text-primary">
+                👋 嗨，你好！
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-dark/80 mb-4 sm:mb-6 leading-relaxed">
+                欢迎访问我的个人项目仓库！很高兴你能来这里查看我。
+            </p>
+            <div class="h-px w-16 sm:w-24 bg-primary/30 mx-auto mb-4 sm:mb-6"></div>
+            <p class="text-base sm:text-lg text-dark/70">
+                自己写的有趣项目。
+            </p>
+        </div>
+        
+        <!-- 重要提示卡片 - 完全响应式 -->
+        <div class="w-full max-w-lg bg-white rounded-xl shadow-md p-4 sm:p-6 card-hover border-l-4 border-red-500">
+            <div class="flex flex-col sm:flex-row items-start">
+                <div class="bg-red-100 rounded-full p-2 mb-3 sm:mb-0 sm:mr-4 mt-1">
+                    <i class="fa fa-exclamation-circle text-red-500 text-lg sm:text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-lg sm:text-xl font-bold text-red-700 mb-2 sm:mb-3">重要提示</h2>
+                    <p class="text-dark/80 mb-3 sm:mb-4 text-sm sm:text-base">
+                        <i class="fa fa-warning text-red-500 mr-2"></i>
+                        请<strong>不要</strong>在本仓库中随意添加或修改外部链接，特别是未经授权的链接、广告或恶意网站。
+                    </p>
+                    <p class="text-dark/80 text-sm sm:text-base">
+                        <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                        所有外部链接必须经过审核和授权，以确保它们的安全性和相关性。
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GitHub访问按钮 - 新增响应式按钮 -->
+        
+    </main>
+    
+    <!-- 页脚 - 响应式边距和字体大小 -->
+    <footer class="py-4 sm:py-6 text-center text-dark/60 text-xs sm:text-sm">
+        <p>© 2025 GitHub 仓库 | 分享代码，共同进步</p>
+    </footer>
+    
+    <!-- 响应式动画效果 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 添加淡入效果
+            const fadeInElements = document.querySelectorAll('main > div');
+            fadeInElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(15px)'; // 减少移动距离，更适合手机
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+            
+            // 悬停效果增强 - 添加触摸设备检测
+            const githubIcon = document.querySelector('.fa-github');
+            const isTouchDevice = 'ontouchstart' in document.documentElement;
+            
+            if (!isTouchDevice) { // 只为非触摸设备添加悬停效果
+                githubIcon.addEventListener('mouseenter', () => {
+                    githubIcon.style.transform = 'scale(1.1) rotate(10deg)';
+                    githubIcon.style.transition = 'transform 0.3s ease';
+                });
+                githubIcon.addEventListener('mouseleave', () => {
+                    githubIcon.style.transform = 'scale(1) rotate(0)';
+                });
+            }
+            
+            // 为触摸设备添加点击效果
+            if (isTouchDevice) {
+                githubIcon.addEventListener('touchstart', () => {
+                    githubIcon.style.transform = 'scale(1.05)';
+                    githubIcon.style.transition = 'transform 0.2s ease';
+                });
+                githubIcon.addEventListener('touchend', () => {
+                    githubIcon.style.transform = 'scale(1)';
+                });
+            }
+            
+            // 响应式调整
+            function handleResize() {
+                // 可以添加更多响应式逻辑
+            }
+            
+            window.addEventListener('resize', handleResize);
+        });
+    </script>
+</body>
+</html>
