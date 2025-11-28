@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f0f8ff">
+    <title>小何冉每天都开开心心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: "Arial", "Microsoft YaHei", "PingFang SC", sans-serif;
+            background-color: #f0f8ff;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            touch-action: manipulation;
+        }
+        
+        .happy-card {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            text-align: center;
+            opacity: 0.9;
+            animation: fall linear forwards;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .happy-card:hover,
+        .happy-card:active {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        @keyframes fall {
+            0% {
+                top: -20%;
+                transform: rotate(-10deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                transform: rotate(10deg);
+                opacity: 0;
+            }
+        }
+        
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+        }
+        
+        .card-content {
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.4;
+        }
+        
+        .smiley {
+            font-size: 24px;
+            margin: 5px 0;
+        }
+        
+        .center-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 0;
+            padding: 0 20px;
+        }
+        
+        .center-message h1 {
+            font-size: 28px;
+            color: #ffff00;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+        
+        .center-message p {
+            font-size: 16px;
+            color: #4a4a4a;
+        }
+        
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            .happy-card {
+                width: 120px;
+                padding: 12px;
+            }
+            
+            .smiley {
+                font-size: 20px;
+            }
+            
+            .card-content {
+                font-size: 12px;
+            }
+            
+            .center-message h1 {
+                font-size: 24px;
+            }
+            
+            .center-message p {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .happy-card {
+                width: 100px;
+                padding: 10px;
+            }
+            
+            .smiley {
+                font-size: 18px;
+            }
+            
+            .card-content {
+                font-size: 11px;
+            }
+            
+            .center-message h1 {
+                font-size: 20px;
+            }
+            
+            .center-message p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="center-message">
+        <h1>✨ 小何冉要开开心心 ✨</h1>
+        <p>开心正在向小何冉飞来...</p>
+        
+    </div>
+
+    <script>
+        const cardContents = [
+            { title: "😊", content: "小何冉，今天也要微笑哦！" },
+            { title: "💪", content: "小何冉，你真的超棒的！" },
+            { title: "☀️", content: "小何冉，保持阳光心态！" },
+            { title: "🥰", content: "小何冉，要好好爱自己！" },
+            { title: "🎉", content: "小何冉，庆祝每一个小成就！" },
+            { title: "🌟", content: "小何冉，你是独一无二的！" },
+            { title: "😆", content: "小何冉，开心最重要啦！" },
+            { title: "💖", content: "小何冉，愿你被爱包围！" },
+            { title: "🚀", content: "小何冉，向着目标前进！" },
+            { title: "🌈", content: "小何冉，风雨过后有彩虹！" },
+            { title: "🌸", content: "小何冉，你像花朵一样美丽！" },
+            { title: "🎈", content: "小何冉，每一天都是新的开始！" },
+            { title: "🍭", content: "小何冉，生活像糖果一样甜！" },
+            { title: "🌺", content: "小何冉，绽放你的笑容！" },
+            { title: "🎊", content: "小何冉，每一天都值得庆祝！" },
+            { title: "💫", content: "小何冉，你自带光芒！" },
+            { title: "🌻", content: "小何冉，像向日葵一样阳光！" },
+            { title: "🍀", content: "小何冉，好运与你同在！" },
+            { title: "🎁", content: "小何冉，每一天都有惊喜！" },
+            { title: "🦋", content: "小何冉，自由快乐地飞舞！" },
+            { title: "🍦", content: "小何冉，生活需要一点甜！" },
+            { title: "🌼", content: "小何冉，你的笑容很治愈！" },
+            { title: "🎵", content: "小何冉，快乐如音乐般美妙！" },
+            { title: "✨", content: "小何冉，你的未来闪闪发光！" },
+            { title: "🍉", content: "小何冉，夏天的快乐属于你！" },
+            { title: "🌟", content: "小何冉，你是夜空中最亮的星！" },
+            { title: "🥳", content: "小何冉，快乐就大声笑出来！" },
+            { title: "💓", content: "小何冉，心被你的笑容填满！" },
+            { title: "🌊", content: "小何冉，心胸像大海一样宽广！" },
+            { title: "🍬", content: "小何冉，每一天都甜甜蜜蜜！" }
+        ];
+        
+        const colors = [
+            '#ff6b6b', '#4ecdc4', '#ffd166', 
+            '#6a0572', '#1a535c', '#ff8c42', '#7209b7'
+        ];
+        
+        function createCard() {
+            const card = document.createElement('div');
+            card.classList.add('happy-card');
+            
+            const randomContent = cardContents[Math.floor(Math.random() * cardContents.length)];
+            
+            card.innerHTML = `
+                <div class="smiley">${randomContent.title}</div>
+                <p class="card-content">${randomContent.content}</p>
+            `;
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            card.querySelector('.smiley').style.color = randomColor;
+            
+            // 根据屏幕尺寸调整卡片宽度
+            const cardWidth = window.innerWidth <= 480 ? 100 : window.innerWidth <= 768 ? 120 : 150;
+            const posX = Math.random() * (window.innerWidth - cardWidth - 20) + 10;
+            const scale = Math.random() * 0.3 + 0.8; // 减少缩放范围，让卡片更易读
+            card.style.transform = `scale(${scale})`;
+            
+            // 根据设备性能调整下落时间
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const fallDuration = isMobile ? Math.random() * 4 + 2 : Math.random() * 5 + 3; // 移动端更快
+            card.style.animationDuration = `${fallDuration}s`;
+            card.style.left = `${posX}px`;
+            
+            // 添加触摸和点击事件
+            const handleCardInteraction = () => {
+                card.style.animation = 'none';
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => card.remove(), 300);
+            };
+            
+            card.addEventListener('click', handleCardInteraction);
+            card.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // 防止触摸事件触发滚动
+                handleCardInteraction();
+            });
+            
+            document.body.appendChild(card);
+            
+            // 设置移除时间
+            setTimeout(() => {
+                // 检查卡片是否仍然存在
+                if (document.body.contains(card)) {
+                    card.style.animation = 'none';
+                    card.style.opacity = '0';
+                    setTimeout(() => card.remove(), 300);
+                }
+            }, fallDuration * 1000);
+        }
+        
+        function startCardRain() {
+            // 初始创建一些卡片
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => createCard(), i * 200);
+            }
+            
+            // 根据设备性能调整生成间隔
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            // 移动端间隔稍大，减少性能消耗
+            const minInterval = isMobile ? 300 : 200;
+            const maxInterval = isMobile ? 1000 : 800;
+            
+            // 使用requestAnimationFrame优化动画性能
+            function scheduleNextCard() {
+                const interval = Math.random() * (maxInterval - minInterval) + minInterval;
+                setTimeout(() => {
+                    if (window.requestAnimationFrame) {
+                        requestAnimationFrame(createCard);
+                    } else {
+                        createCard();
+                    }
+                    scheduleNextCard();
+                }, interval);
+            }
+            
+            scheduleNextCard();
+        }
+        
+        window.addEventListener('load', startCardRain);
+    </script>
+</body>
+</html>
