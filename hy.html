@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给何源的惊喜</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #fff;
+            overflow: hidden;
+        }
+        .text-item {
+            position: absolute;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 扩充后的文案列表，全是带何源的趣味句子
+        const texts = [
+            "哈喽何源！", "何源好久不见呀！", "何源还在不睡啊？", 
+            "我看到你啦何源！", "何源哈哈哈哈！", "何源带我打和平！",
+            "何源快跑呀！", "何源快看这里！", "何源你躲不掉的！",
+            "何源今天超开心！", "我也叫何源！", "人机！","听说你谈恋爱啦！","快和我挨你大姐说说！,"哈哈哈"
+        ];
+        const colors = ["#ff0000", "#00ff00", "#0000ff", "#ff9900", "#9900ff", "#ff00ff"];
+        let items = [];
+
+        // 创建文字元素
+        function createText() {
+            const div = document.createElement('div');
+            div.className = 'text-item';
+            // 随机选文案和颜色
+            const idx = Math.floor(Math.random() * texts.length);
+            div.innerText = texts[idx];
+            div.style.color = colors[Math.floor(Math.random() * colors.length)];
+            // 初始位置和大小
+            div.style.left = Math.random() * window.innerWidth + 'px';
+            div.style.top = Math.random() * window.innerHeight + 'px';
+            div.style.fontSize = '20px';
+            document.body.appendChild(div);
+            items.push({
+                elem: div,
+                size: 20,
+                speedX: (Math.random() - 0.5) * 6,
+                speedY: (Math.random() - 0.5) * 6
+            });
+        }
+
+        // 动画循环
+        function animate() {
+            items.forEach(item => {
+                // 移动
+                let x = parseFloat(item.elem.style.left) + item.speedX;
+                let y = parseFloat(item.elem.style.top) + item.speedY;
+                // 边界反弹
+                if (x < 0 || x > window.innerWidth) item.speedX *= -1;
+                if (y < 0 || y > window.innerHeight) item.speedY *= -1;
+                item.elem.style.left = x + 'px';
+                item.elem.style.top = y + 'px';
+                // 放大
+                item.size += 0.3;
+                if (item.size > 80) item.size = 20;
+                item.elem.style.fontSize = item.size + 'px';
+            });
+            requestAnimationFrame(animate);
+        }
+
+        // 每隔1秒生成一个文字
+        setInterval(createText, 1000);
+        animate();
+    </script>
+</body>
+</html>
